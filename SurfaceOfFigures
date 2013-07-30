@@ -1,0 +1,105 @@
+using System;
+
+class surface
+{
+    private static double CalculateSurfaceByGivenSideAndAlt(int side, int altitude)
+    {
+        double result = (side * altitude) / 2;
+
+        return result;
+    }
+    private static double CalculateSurfaceByGivenThreeSides(int side1, int side2, int side3)
+    {
+        double result = Math.Sqrt(((side1 + side2 + side3) * (side1 + side2 - side3) * (side2 + side3 - side1) * (side1 + side3 - side2)) / 4);
+
+        return result;
+    }
+    private static double CalculateSurfaceByGivenTwoSidesAndAngle(int sideOne, int sideTwo, int angle)
+    {
+        double result = ((sideOne * sideTwo) / 2) * Math.Abs(Math.Sin(angle));
+
+        return result;
+    }
+    static void Main()
+    {
+        Console.WriteLine("Please choose which way of calculating the surface of a triangle you prefer:");
+        Console.WriteLine("\nFor given One Side and an Altitude type SIDEALT\nFor given Three Sides type THREESIDES\nFor given Two sides and an angle between them type TWOANGLEBETWEEN");
+        string choice = Console.ReadLine();
+
+        switch (choice)
+        { 
+            case "SIDEALT":
+                Console.WriteLine("Please enter Side value and Altitude value:\n");
+                int side;
+                do
+                {
+                    Console.WriteLine("Side = ");
+                }
+                while(!int.TryParse(Console.ReadLine() , out side) || side < 0);
+                int alt;
+                do
+                {
+                    Console.WriteLine("Altitude = ");
+                }
+                while(!int.TryParse(Console.ReadLine() , out alt) || alt < 0);
+
+                double surface = CalculateSurfaceByGivenSideAndAlt(side, alt);
+
+                Console.WriteLine("The surface is: {0}", surface);
+                break;
+            case "THREESIDES":
+                Console.WriteLine("Please enter Sides:");
+                int side1;
+                do
+                {
+                    Console.WriteLine("Side 1 = ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out side1) || side1 < 0);
+                int side2;
+                do
+                {
+                    Console.WriteLine("Side 2 = ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out side2) || side2 < 0);
+                int side3;
+                do
+                {
+                    Console.WriteLine("Side 3 = ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out side3) || side3 < 0);
+
+                double surface2 = CalculateSurfaceByGivenThreeSides(side1, side2, side3);
+
+                Console.WriteLine("The surface is: {0}", surface2);
+                break;
+            case "TWOANGLEBETWEEN":
+                Console.WriteLine("Please enter Sides and angle values:");
+                int sideOne;
+                do
+                {
+                    Console.WriteLine("Side 1 = ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out sideOne) || sideOne < 0);
+                int sideTwo;
+                do
+                {
+                    Console.WriteLine("Side 2 = ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out sideTwo) || sideTwo < 0);
+                int angle;
+                do
+                {
+                    Console.WriteLine("Angle = ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out angle) || angle < 0);
+
+                double surface3 = CalculateSurfaceByGivenTwoSidesAndAngle(sideOne, sideTwo, angle);
+
+                Console.WriteLine("The surface is: {0}", surface3);
+                break;
+            default:
+                Console.WriteLine("Error!!! Please check your input!!!");
+                break;
+        }
+    }
+}
