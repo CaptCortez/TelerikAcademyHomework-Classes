@@ -1,0 +1,19 @@
+using System;
+
+class leapYear
+{
+    static void Main()
+    {
+        Console.WriteLine("Enter a year:");
+        int year;
+        do
+        {
+            Console.WriteLine("Year = ");
+        }
+        while(!int.TryParse(Console.ReadLine(), out year) || year > 9999 || year < 0);
+        
+        bool isLeap = DateTime.IsLeapYear(year);
+
+        Console.WriteLine("Is Leap Year: {0}", isLeap);
+    }
+}
