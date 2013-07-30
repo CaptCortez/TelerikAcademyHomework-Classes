@@ -1,0 +1,10 @@
+using System;
+
+class dayOfWeek
+{
+    static void Main()
+    {
+        DayOfWeek today = DateTime.Today.DayOfWeek;
+        Console.WriteLine("\nToday is {0}", today);
+    }
+}
